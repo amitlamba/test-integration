@@ -25,7 +25,8 @@ class TestIntegration {
 
     @Test
     fun validPushEventWithAuth() {
-    //Valid Event with Authorization and the user is not logged in
+        //to test the correctness of push/event for the user with authorization credentials but not logged in
+        //testing the output of push/event by creating a request with authorization header but without app user id
 
         val validEventJson = """{
           "name":"charged112",
@@ -57,40 +58,11 @@ class TestIntegration {
 
     @Test
     fun validPushEventWithoutAuth() {
-        //Valid Event without Authorization and the user is not logged in
+        //to test authorization of push/event for the user without authorization credentials and not logged in
+        //testing the output of push/event by creating a request without authorization header and without app user id
 
         val validEventJson = """{
           "name":"charged112",
-          "attributes":{"price":"300"},
-            "identity" : {
-                "deviceId":"5c723e5e-becf-4de7-8943-7c15a1b0f45a",
-                "sessionId":"e9298a5d-dca6-49c1-b333-f4eb6e7a2909"
-            },
-          "lineItem" : [
-            {
-              "price":200,
-              "currency":"USD",
-              "product":"CORE JAVA Volume 1",
-              "categories":["Book", "Programming"],
-              "quantity":2
-            }
-          ]
-        }"""
-
-        val requestEvent = RestAssured.given()
-        requestEvent.body(validEventJson)
-        requestEvent.contentType(ContentType.JSON)
-        val responseEvent = requestEvent.post("http://localhost:5454/push/event")
-        val bodyResponse = responseEvent.body()
-        bodyResponse.print()
-        responseEvent.then().statusCode(HttpStatus.SC_UNAUTHORIZED)
-    }
-
-    @Test
-    fun invalidPushEventWithoutAuth() {
-        //Invalid Event without Authorization and the user is not logged in
-
-        val validEventJson = """{
           "attributes":{"price":"300"},
             "identity" : {
                 "deviceId":"5c723e5e-becf-4de7-8943-7c15a1b0f45a",
@@ -118,7 +90,8 @@ class TestIntegration {
 
     @Test
     fun userComesFirstTimePushEventWithAuth() {
-        //Valid Event with Authorization and the user comes first time
+        //to test the correctness of push/event for the user visiting first time with authorization credentials
+        //testing the output of push/event by creating a request with authorization header but without identity
 
         val validEventJson = """{
           "name":"charged112",
@@ -146,7 +119,8 @@ class TestIntegration {
 
     @Test
     fun userComesFirstTimePushEventWithoutAuth() {
-        //Valid Event without Authorization and the user comes first time
+        //to test the authorization of push/event for the user visiting first time without authorization credentials
+        //testing the output of push/event by creating a request without authorization header and without identity
 
         val validEventJson = """{
           "name":"charged112",
@@ -172,35 +146,11 @@ class TestIntegration {
     }
 
     @Test
-    fun userComesFirstTimeInvalidPushEventWithoutAuth() {
-        //Valid Event without Authorization and the user comes first time
-
-        val validEventJson = """{
-          "attributes":{"price":"300"},
-          "lineItem" : [
-            {
-              "price":200,
-              "currency":"USD",
-              "product":"CORE JAVA Volume 1",
-              "categories":["Book", "Programming"],
-              "quantity":2
-            }
-          ]
-        }"""
-
-        val requestEvent = RestAssured.given()
-        requestEvent.body(validEventJson)
-        requestEvent.contentType(ContentType.JSON)
-        val responseEvent = requestEvent.post("http://localhost:5454/push/event")
-        val bodyResponse = responseEvent.body()
-        bodyResponse.print()
-        responseEvent.then().statusCode(HttpStatus.SC_UNAUTHORIZED)
-    }
-
-    @Test
     fun validPushEventWithIncorrectAuth() {
     //FIXME No Message Displayed Handle The Exception
-    //Valid Event with incorrect authorization header
+        //to test the authorization of push/event for the user not logged in and providing incorrect authorization credentials
+        //testing the output of push/event creating a request with random authorization and without identity
+
         val validEventJson = """{
           "name":"charged112",
           "attributes":{"price":"3000"},
@@ -232,7 +182,9 @@ class TestIntegration {
 
     @Test
     fun validPushProfileWithAuth() {
-    //Valid push profile with authorization
+        //to test the correctness of push/profile for the user providing correct authorization credentials
+        //testing the output of push/profile by creating a request with authorization header
+
         val validEventJson = """{
           "firstName":"Kamalpreet",
           "lastName":"Singh",
@@ -253,6 +205,32 @@ class TestIntegration {
         val bodyResponse = responseEvent.body()
         bodyResponse.print()
         responseEvent.then().statusCode(HttpStatus.SC_OK)
+    }
+
+    @Test
+    fun validPushProfileWithoutAuth() {
+        //to test the authorization of push/profile for the user without authorization credentials
+        //testing the output of push/profile by creating a request without authorization header
+
+        val validEventJson = """{
+          "firstName":"Kamalpreet",
+          "lastName":"Singh",
+            "identity" : {
+              "deviceId": "5c723e5e-becf-4de7-8943-7c15a1b0f45a",
+	          "sessionId": "e9298a5d-dca6-49c1-b333-f4eb6e7a2909",
+	          "userId": "5a770a572ff9764dc8ff6a0d"
+            },
+          "gender":"M",
+          "country":"India"
+        }"""
+
+        val requestEvent = RestAssured.given()
+        requestEvent.body(validEventJson)
+        requestEvent.contentType(ContentType.JSON)
+        val responseEvent = requestEvent.post("http://localhost:5454/push/profile")
+        val bodyResponse = responseEvent.body()
+        bodyResponse.print()
+        responseEvent.then().statusCode(HttpStatus.SC_UNAUTHORIZED)
     }
 
     @Test
@@ -334,30 +312,6 @@ class TestIntegration {
         val editedBodyResponse = editedResponseEvent.body()
         editedBodyResponse.print()
         editedResponseEvent.then().statusCode(HttpStatus.SC_UNAUTHORIZED)
-    }
-
-    @Test
-    fun validPushProfileWithoutAuth() {
-    //Valid push profile without authorization
-        val validEventJson = """{
-          "firstName":"Kamalpreet",
-          "lastName":"Singh",
-            "identity" : {
-              "deviceId": "5c723e5e-becf-4de7-8943-7c15a1b0f45a",
-	          "sessionId": "e9298a5d-dca6-49c1-b333-f4eb6e7a2909",
-	          "userId": "5a770a572ff9764dc8ff6a0d"
-            },
-          "gender":"M",
-          "country":"India"
-        }"""
-
-        val requestEvent = RestAssured.given()
-        requestEvent.body(validEventJson)
-        requestEvent.contentType(ContentType.JSON)
-        val responseEvent = requestEvent.post("http://localhost:5454/push/profile")
-        val bodyResponse = responseEvent.body()
-        bodyResponse.print()
-        responseEvent.then().statusCode(HttpStatus.SC_UNAUTHORIZED)
     }
 
     @Test
