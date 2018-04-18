@@ -13,10 +13,12 @@ class TestIntegration {
     private var deviceId=""
     private var sessionId=""
 
+    private val userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+
     @Before
     fun runBeforeClass() {
 
-        val loginDetails = "{\"username\":\"kamalpreet.singh@userndot.com\",\"password\":\"Kamal123!\"}"
+        val loginDetails = """{"username":"kamalpreet.singh@userndot.com","password":"Kamal123!"}"""
         val request = RestAssured.given()
         request.body(loginDetails)
         request.header(HTTP.CONTENT_TYPE, ContentType.JSON)
@@ -30,7 +32,7 @@ class TestIntegration {
         requestEvent.body(eventJson)
         requestEvent.contentType(ContentType.JSON)
         requestEvent.header("Authorization", token)
-        val responseEvent = requestEvent.post("http://192.168.0.109:5454/event/initialize")
+        val responseEvent = requestEvent.post("http://192.168.0.109:8080/event/event/initialize")
         deviceId=responseEvent.jsonPath().get<String>("data.value.deviceId")
         sessionId=responseEvent.jsonPath().get<String>("data.value.sessionId")
     }
@@ -64,7 +66,10 @@ class TestIntegration {
         requestEvent.body(eventJson)
         requestEvent.contentType(ContentType.JSON)
         requestEvent.header("Authorization", token)
-        val responseEvent = requestEvent.post("http://192.168.0.109:8080/event/push/event")
+        requestEvent.header("User-Agent", userAgent)
+        var responseEvent = requestEvent.post("http://192.168.0.109:8080/event/push/event")
+        responseEvent.body.print()
+        responseEvent = requestEvent.post("http://192.168.0.109:8080/event/push/event")
         responseEvent.body.print()
 
         val mongoClient=MongoClient("192.168.0.109",27017)
