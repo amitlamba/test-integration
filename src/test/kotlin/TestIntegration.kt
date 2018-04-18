@@ -12,7 +12,6 @@ class TestIntegration {
     private var token = ""
     private var deviceId=""
     private var sessionId=""
-
     private val userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
 
     @Before
@@ -25,14 +24,13 @@ class TestIntegration {
         val response = request.post("http://192.168.0.109:8080/auth/auth")
         token = response.jsonPath().get<String>("data.value.token")
 
-        val eventJson = """{
-        }"""
+        val eventJson = """{}"""
 
         val requestEvent = RestAssured.given()
         requestEvent.body(eventJson)
         requestEvent.contentType(ContentType.JSON)
         requestEvent.header("Authorization", token)
-        val responseEvent = requestEvent.post("http://192.168.0.109:8080/event/event/initialize")
+        val responseEvent = requestEvent.post("http://localhost:5454/event/initialize")
         deviceId=responseEvent.jsonPath().get<String>("data.value.deviceId")
         sessionId=responseEvent.jsonPath().get<String>("data.value.sessionId")
     }
@@ -43,7 +41,7 @@ class TestIntegration {
         //to test the correctness of push/event for the user with authorization credentials but not logged in
         //testing the output of push/event by creating a request with authorization header but without app user id
         val eventJson = """{
-          "name":"charged007",
+          "name":"charged000",
           "attributes":{"price":"3000"},
             "identity" : {
                 "deviceId":"$deviceId",
@@ -67,22 +65,61 @@ class TestIntegration {
         requestEvent.contentType(ContentType.JSON)
         requestEvent.header("Authorization", token)
         requestEvent.header("User-Agent", userAgent)
-        var responseEvent = requestEvent.post("http://192.168.0.109:8080/event/push/event")
-        responseEvent.body.print()
-        responseEvent = requestEvent.post("http://192.168.0.109:8080/event/push/event")
+        val responseEvent = requestEvent.post("http://localhost:5454/push/event")
         responseEvent.body.print()
 
-        val mongoClient=MongoClient("192.168.0.109",27017)
-        val db=mongoClient.getDatabase("eventdb")
-        val collection=db.getCollection("13_event")
-        val searchQuery=BasicDBObject()
+        var mongoClient=MongoClient("192.168.0.109",27017)
+        var db=mongoClient.getDatabase("eventdb")
+        var collection=db.getCollection("13_event")
+        var searchQuery=BasicDBObject()
         searchQuery["name"] = "charged007"
-        val cursor= collection.find(searchQuery)
+        var cursor= collection.find(searchQuery)
         for (doc in cursor) {
             println(doc)
         }
 
+        val eventJson2 = """{
+          "name":"buyBatMobile",
+          "attributes":{"price":"20000"},
+            "identity" : {
+                "deviceId":"$deviceId",
+                "sessionId":"$sessionId"
+            },
+          "lineItem" : [
+            {
+              "price":20000,
+              "currency":"USD",
+              "product":"batMobile",
+              "categories":["Car", "Action"],
+              "quantity":1
+            }
+          ],
+          "latitude":"56.23",
+          "longitude":"56.89"
+        }"""
+        val requestEvent2 = RestAssured.given()
+        requestEvent2.body(eventJson2)
+        requestEvent2.contentType(ContentType.JSON)
+        requestEvent2.header("Authorization", token)
+        requestEvent2.header("User-Agent", userAgent)
+        val responseEvent2 = requestEvent2.post("http://localhost:5454/push/event")
+        responseEvent2.body.print()
+
+        mongoClient=MongoClient("192.168.0.109",27017)
+        db=mongoClient.getDatabase("eventdb")
+        collection=db.getCollection("13_event")
+        searchQuery=BasicDBObject()
+        searchQuery["name"] = "charged007"
+        cursor= collection.find(searchQuery)
+        for (doc in cursor) {
+            println(doc)
+        }
     }
+
+
+
+
+
 }
 
 
