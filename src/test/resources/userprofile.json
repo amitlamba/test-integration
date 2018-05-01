@@ -1,0 +1,8 @@
+{
+  "firstName": "Kamalpreet",
+  "lastName": "Singh",
+  "identity": {
+    "deviceId": "$deviceId",
+    "sessionId": "$sessionId"
+  }
+}

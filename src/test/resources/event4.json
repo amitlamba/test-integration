@@ -1,0 +1,17 @@
+ {
+    "name": "AddedToWishList",
+    "attributes": {
+      "product": "Playstation",
+      "price": "34999",
+      "colour": "Black",
+      "categories": "Gaming"
+    },
+    "city": "Gurgaon",
+    "state": "Haryana",
+    "country": "India",
+    "identity": {
+      "deviceId": "$deviceId",
+      "sessionId": "$sessionId",
+      "userId": "$userId"
+    }
+  }

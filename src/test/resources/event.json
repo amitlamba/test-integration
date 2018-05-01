@@ -1,0 +1,16 @@
+{
+  "name": "ViewedSportsCar",
+  "attributes": {
+    "company": "Lamborghini",
+    "model": "Aventador",
+    "price": "5000000",
+    "colour": "Black"
+  },
+  "city": "New York City",
+  "state": "New York",
+  "country": "United States",
+  "identity": {
+    "deviceId": "$deviceId",
+    "sessionId": "$sessionId"
+  }
+}

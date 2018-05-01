@@ -1,0 +1,17 @@
+ {
+    "name": "chargedItem",
+    "attributes": {
+      "product": "Laptop",
+      "price": "100000",
+      "colour": "Black",
+      "categories": "Gaming"
+    },
+    "city": "Gurgaon",
+    "state": "Haryana",
+    "country": "India",
+    "identity": {
+      "deviceId": "$deviceId",
+      "sessionId": "$sessionId",
+      "userId": "$userId"
+    }
+  }
