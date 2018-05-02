@@ -1,8 +1,5 @@
 {
   "firstName": "Kamalpreet",
   "lastName": "Singh",
-  "identity": {
-    "deviceId": "$deviceId",
-    "sessionId": "$sessionId"
-  }
+  "email":"kamalpreet.singh@userndot.com"
 }

@@ -1,8 +1,5 @@
 {
   "mobile": "7015499994",
   "countryCode": "+91",
-  "identity": {
-    "deviceId": "$deviceId",
-    "sessionId": "$sessionId"
-  }
+  "fbId":"kamalpreetsingh@facebook.com"
 }

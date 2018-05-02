@@ -9,9 +9,5 @@
     "city": "Gurgaon",
     "state": "Haryana",
     "country": "India",
-    "identity": {
-      "deviceId": "$deviceId",
-      "sessionId": "$sessionId",
-      "userId": "$userId"
-    }
+    "ipAddress":"192.168.0.109"
   }

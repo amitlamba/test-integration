@@ -1,14 +1,10 @@
 {
-  "name": "chargedSportsCar",
+  "name": "chargedItem",
   "attributes": {
+    "item":"Sports Car",
     "Company": "Ferrari",
     "Model": "GTC4 Lusso",
-    "price": 200000000,
     "colour": "Matte Black"
-  },
-  "identity": {
-    "deviceId": "$deviceId",
-    "sessionId": "$sessionId"
   },
   "lineItem": [
     {
@@ -19,12 +15,7 @@
         "Racing Car",
         "Convertable"
       ],
-      "quantity": 1,
-      "properties": {
-        "maximumPower": "507KW",
-        "maximumSpeed": "0-100 in 3.4 sec",
-        "maximumTorque": "697NM"
-      }
+      "quantity": 1
     }
   ],
   "city": "New York City",

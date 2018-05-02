@@ -1,17 +1,26 @@
- {
-    "name": "chargedItem",
-    "attributes": {
-      "product": "Laptop",
-      "price": "100000",
-      "colour": "Black",
-      "categories": "Gaming"
-    },
-    "city": "Gurgaon",
-    "state": "Haryana",
-    "country": "India",
-    "identity": {
-      "deviceId": "$deviceId",
-      "sessionId": "$sessionId",
-      "userId": "$userId"
+{
+  "name": "chargedItem",
+  "attributes": {
+    "item": "Laptop",
+    "brand": "Lenovo",
+    "model": "Legion",
+    "price": "100000",
+    "colour": "Black"
+  },
+  "LineItem": [
+    {
+      "price":"100000",
+      "currency":"INR",
+      "product":"Laptop",
+      "categories":[
+        "Gaming",
+        "VR"
+      ],
+      "quantity":1
     }
-  }
+  ],
+  "city": "Gurgaon",
+  "state": "Haryana",
+  "country": "India",
+  "ipAddress":"125.142.128.196"
+}
