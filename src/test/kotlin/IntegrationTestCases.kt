@@ -15,6 +15,8 @@ import io.restassured.http.ContentType
 import io.restassured.specification.RequestSpecification
 import org.apache.http.HttpStatus
 import org.apache.http.protocol.HTTP
+import org.bson.json.JsonMode
+import org.bson.json.JsonWriterSettings
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -23,22 +25,24 @@ import java.io.File
 import java.io.StringReader
 import java.util.*
 
+
 class IntegrationTestCases {
 
-    private lateinit var token: String
-    private lateinit var deviceId: String
-    private lateinit var sessionId: String
+    //Variable to hold Authorization token
+    private var token = ""
+    //Variables to hold Device Id, Session Id of the first time user
+    private var deviceId = ""
+    private var sessionId = ""
+
+    private val userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+    lateinit var objectMapper: ObjectMapper
+
+    private val profile = "dev" //change this to dev to use local urls
 
     private lateinit var authUrl: String
     private lateinit var eventUrl: String
     private lateinit var pushProfileUrl: String
     private lateinit var eventInitializeUrl: String
-
-    private lateinit var objectMapper: ObjectMapper
-
-    private val userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
-
-    private val profile = "dev"
 
 
     @Before
@@ -71,6 +75,7 @@ class IntegrationTestCases {
     @Test
     fun eventPushWithAuth() {
 
+
         //Testing the correctness of event push and push profile with authorization token and data saved in the database
         //Creating user event anonymously
         val eventJson = buildevent("event.json", deviceId, sessionId)
@@ -86,7 +91,7 @@ class IntegrationTestCases {
 
         assertEquals(HttpStatus.SC_OK, responseEvent2.statusCode)
 
-        //Creating user profile for the first time
+        //Creating user profile
         val userProfileJson = builUserProfile("userprofile.json", deviceId, sessionId)
         val requestProfile = requestSpecificationWithAuth(userProfileJson)
         val responseProfile = requestProfile.post(pushProfileUrl)
@@ -137,7 +142,7 @@ class IntegrationTestCases {
 
             var responseJson = ""
             while (iterableCursor.hasNext()) {
-                responseJson = JSONObject(iterableCursor.next()).toString()
+                responseJson = iterableCursor.next().toJson(JsonWriterSettings(JsonMode.STRICT))
             }
             objectMapper.readValue(responseJson, Event::class.java)
         }
@@ -198,31 +203,6 @@ class IntegrationTestCases {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private fun mongoDatabase(): MongoDatabase? {
         val mongoClient = MongoClient("192.168.0.109", 27017)
         return mongoClient.getDatabase("eventdb")
@@ -277,7 +257,6 @@ class IntegrationTestCases {
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
         return mapper
     }
-
 }
 
 
