@@ -15,6 +15,8 @@ import io.restassured.http.ContentType
 import io.restassured.specification.RequestSpecification
 import org.apache.http.HttpStatus
 import org.apache.http.protocol.HTTP
+import org.bson.json.JsonMode
+import org.bson.json.JsonWriterSettings
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -35,7 +37,7 @@ class IntegrationTestCases {
     private val userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
     lateinit var objectMapper: ObjectMapper
 
-    private val profile = "server" //change this to dev to use local urls
+    private val profile = "dev" //change this to dev to use local urls
 
     private lateinit var authUrl: String
     private lateinit var eventUrl: String
@@ -140,7 +142,7 @@ class IntegrationTestCases {
 
             var responseJson = ""
             while (iterableCursor.hasNext()) {
-                responseJson = JSONObject(iterableCursor.next()).toString()
+                responseJson = iterableCursor.next().toJson(JsonWriterSettings(JsonMode.STRICT))
             }
             objectMapper.readValue(responseJson, Event::class.java)
         }

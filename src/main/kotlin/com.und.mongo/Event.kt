@@ -6,13 +6,13 @@ import java.util.HashMap
 
 class Event {
 
-    var id: String? = null
+    //var id: String? = null
     var name: String? =null
     var clientId: Int?=null
     var lineItem: MutableList<LineItem> = mutableListOf()
     var attributes: HashMap<String, Any> = hashMapOf()
     var system: System = System()
-    var creationTime: LocalDateTime = LocalDateTime.now()
+    //var creationTime: LocalDateTime = LocalDateTime.now()
     var geoDetails = GeoDetails()
     var deviceId: String = ""
     var userIdentified: Boolean = false
