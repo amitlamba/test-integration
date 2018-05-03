@@ -2,8 +2,8 @@
   "name": "chargedItem",
   "attributes": {
     "item":"Sports Car",
-    "Company": "Ferrari",
-    "Model": "GTC4 Lusso",
+    "company": "Ferrari",
+    "model": "GTC4 Lusso",
     "colour": "Matte Black"
   },
   "lineItem": [

@@ -1,13 +1,12 @@
  {
     "name": "AddedToWishList",
     "attributes": {
-      "product": "Playstation",
-      "price": "34999",
-      "colour": "Black",
-      "categories": "Gaming"
+      "item": "Playstation",
+      "model":"PS4",
+      "company":"Sony",
+      "colour": "Black"
     },
     "city": "Gurgaon",
     "state": "Haryana",
-    "country": "India",
-    "ipAddress":"192.168.0.109"
+    "country": "India"
   }

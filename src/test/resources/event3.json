@@ -1,10 +1,9 @@
 {
-  "name": "chargedItem",
+  "name": "chargedItem2",
   "attributes": {
     "item": "Laptop",
-    "brand": "Lenovo",
+    "company": "Lenovo",
     "model": "Legion",
-    "price": "100000",
     "colour": "Black"
   },
   "LineItem": [
@@ -21,6 +20,5 @@
   ],
   "city": "Gurgaon",
   "state": "Haryana",
-  "country": "India",
-  "ipAddress":"125.142.128.196"
+  "country": "India"
 }
