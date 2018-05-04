@@ -128,71 +128,70 @@ class IntegrationTestCases {
 
         //Checking event data in MongoDB Database
 
-        val requestJson = JSONObject(eventJson).toString()
-        val requestEventMongo = objectMapper.readValue(requestJson, Event::class.java)
-        val requestEventWeb=objectMapper.readValue(requestJson, EventWeb::class.java)
-        val response = responseBuilder(requestEventMongo)
+        val requestJson = JSONObject(eventJson)
+        val request = objectMapper.readValue(eventJson, Event::class.java)
+        val response = responseBuilder(request.name)
 
-        assertEquals(requestEventWeb.name, response?.name)
-        assertEquals(requestEventWeb.attributes.getValue("item"), response?.attributes?.getValue("item"))
-        assertEquals(requestEventWeb.attributes.getValue("company"), response?.attributes?.getValue("company"))
-        assertEquals(requestEventWeb.attributes.getValue("model"), response?.attributes?.getValue("model"))
-        assertEquals(requestEventWeb.attributes.getValue("colour"), response?.attributes?.getValue("colour"))
-        assertEquals(requestEventWeb.city, response?.geogrophy?.city)
-        assertEquals(requestEventWeb.state, response?.geogrophy?.state)
-        assertEquals(requestEventWeb.country, response?.geogrophy?.country)
+        assertEquals(request.name, response?.name)
+        assertEquals(request.attributes.getValue("item"), response?.attributes?.getValue("item"))
+        assertEquals(request.attributes.getValue("company"), response?.attributes?.getValue("company"))
+        assertEquals(request.attributes.getValue("model"), response?.attributes?.getValue("model"))
+        assertEquals(request.attributes.getValue("colour"), response?.attributes?.getValue("colour"))
+        assertEquals(requestJson.getString("city"), response?.geogrophy?.city)
+        assertEquals(requestJson.getString("state"), response?.geogrophy?.state)
+        assertEquals(requestJson.getString("country"), response?.geogrophy?.country)
+        assertEquals(userId, response?.userId)
+
+        val requestJson2 = JSONObject(eventJson2)
+        val request2 = objectMapper.readValue(eventJson2, Event::class.java)
+        val response2 = responseBuilder(request2.name)
+
+        assertEquals(request2.name, response2?.name)
+        assertEquals(request2.attributes.getValue("item"), response2?.attributes?.getValue("item"))
+        assertEquals(request2.attributes.getValue("company"), response2?.attributes?.getValue("company"))
+        assertEquals(request2.attributes.getValue("model"), response2?.attributes?.getValue("model"))
+        assertEquals(request2.attributes.getValue("colour"), response2?.attributes?.getValue("colour"))
+        assertEquals(requestJson2.getString("city"), response2?.geogrophy?.city)
+        assertEquals(requestJson2.getString("state"), response2?.geogrophy?.state)
+        assertEquals(requestJson2.getString("country"), response2?.geogrophy?.country)
+        assertEquals(userId, response2?.userId)
+
+        val requestJson3 = JSONObject(eventJson3)
+        val request3 = objectMapper.readValue(eventJson3, Event::class.java)
+        val response3 = responseBuilder(request3.name)
+
+        assertEquals(request3.name, response3?.name)
+        assertEquals(request3.attributes.getValue("item"), response3?.attributes?.getValue("item"))
+        assertEquals(request3.attributes.getValue("company"), response3?.attributes?.getValue("company"))
+        assertEquals(request3.attributes.getValue("model"), response3?.attributes?.getValue("model"))
+        assertEquals(request3.attributes.getValue("colour"), response3?.attributes?.getValue("colour"))
+        assertEquals(requestJson3.getString("city"), response3?.geogrophy?.city)
+        assertEquals(requestJson3.getString("state"), response3?.geogrophy?.state)
+        assertEquals(requestJson3.getString("country"), response3?.geogrophy?.country)
+        assertEquals(userId, response3?.userId)
+
+        val requestJson4 = JSONObject(eventJson4)
+        val request4 = objectMapper.readValue(eventJson4, Event::class.java)
+        val response4 = responseBuilder(request4.name)
+
+        assertEquals(request4.name, response4?.name)
+        assertEquals(request4.attributes.getValue("item"), response4?.attributes?.getValue("item"))
+        assertEquals(request4.attributes.getValue("company"), response4?.attributes?.getValue("company"))
+        assertEquals(request4.attributes.getValue("model"), response4?.attributes?.getValue("model"))
+        assertEquals(request4.attributes.getValue("colour"), response4?.attributes?.getValue("colour"))
+        assertEquals(requestJson4.getString("city"), response4?.geogrophy?.city)
+        assertEquals(requestJson4.getString("state"), response4?.geogrophy?.state)
+        assertEquals(requestJson4.getString("country"), response4?.geogrophy?.country)
+        assertEquals(userId, response4?.userId)
+
+        val requestEventUserJson = JSONObject(userProfileJson)
+        val requestEventUser = objectMapper.readValue(userProfileJson, EventUser::class.java)
+        val responseEventUser = responseBuilderUserProfile(requestEventUser.standardInfo.firstName)
 
 
-        val requestJson2 = JSONObject(eventJson2).toString()
-        val requestEventMongo2 = objectMapper.readValue(requestJson2, Event::class.java)
-        val requestEventWeb2=objectMapper.readValue(requestJson2, EventWeb::class.java)
-        val response2 = responseBuilder(requestEventMongo2)
-
-        assertEquals(requestEventWeb2.name, response2?.name)
-        assertEquals(requestEventWeb2.attributes.getValue("item"), response2?.attributes?.getValue("item"))
-        assertEquals(requestEventWeb2.attributes.getValue("company"), response2?.attributes?.getValue("company"))
-        assertEquals(requestEventWeb2.attributes.getValue("model"), response2?.attributes?.getValue("model"))
-        assertEquals(requestEventWeb2.attributes.getValue("colour"), response2?.attributes?.getValue("colour"))
-        assertEquals(requestEventWeb2.city, response2?.geogrophy?.city)
-        assertEquals(requestEventWeb2.state, response2?.geogrophy?.state)
-        assertEquals(requestEventWeb2.country, response2?.geogrophy?.country)
-
-        val requestJson3 = JSONObject(eventJson3).toString()
-        val requestEventMongo3 = objectMapper.readValue(requestJson3, Event::class.java)
-        val requestEventWeb3=objectMapper.readValue(requestJson3, EventWeb::class.java)
-        val response3 = responseBuilder(requestEventMongo3)
-
-        assertEquals(requestEventWeb3.name, response3?.name)
-        assertEquals(requestEventWeb3.attributes.getValue("item"), response3?.attributes?.getValue("item"))
-        assertEquals(requestEventWeb3.attributes.getValue("company"), response3?.attributes?.getValue("company"))
-        assertEquals(requestEventWeb3.attributes.getValue("model"), response3?.attributes?.getValue("model"))
-        assertEquals(requestEventWeb3.attributes.getValue("colour"), response3?.attributes?.getValue("colour"))
-        assertEquals(requestEventWeb3.city, response3?.geogrophy?.city)
-        assertEquals(requestEventWeb3.state, response3?.geogrophy?.state)
-        assertEquals(requestEventWeb3.country, response3?.geogrophy?.country)
-
-        val requestJson4 = JSONObject(eventJson4).toString()
-        val requestEventMongo4 = objectMapper.readValue(requestJson4, Event::class.java)
-        val requestEventWeb4=objectMapper.readValue(requestJson4, EventWeb::class.java)
-        val response4 = responseBuilder(requestEventMongo4)
-
-        assertEquals(requestEventWeb4.name, response4?.name)
-        assertEquals(requestEventWeb4.attributes.getValue("item"), response4?.attributes?.getValue("item"))
-        assertEquals(requestEventWeb4.attributes.getValue("company"), response4?.attributes?.getValue("company"))
-        assertEquals(requestEventWeb4.attributes.getValue("model"), response4?.attributes?.getValue("model"))
-        assertEquals(requestEventWeb4.attributes.getValue("colour"), response4?.attributes?.getValue("colour"))
-        assertEquals(requestEventWeb4.city, response4?.geogrophy?.city)
-        assertEquals(requestEventWeb4.state, response4?.geogrophy?.state)
-        assertEquals(requestEventWeb4.country, response4?.geogrophy?.country)
-
-        val requestEventUserJson = JSONObject(userProfileJson).toString()
-        val requestEventUserMongo = objectMapper.readValue(requestEventUserJson, EventUser::class.java)
-        val requestEventUserWeb = objectMapper.readValue(requestEventUserJson, EventUserWeb::class.java)
-        val responseEventUser = responseBuilderUserProfile(requestEventUserMongo)
-
-        assertEquals(requestEventUserWeb.firstName, responseEventUser?.standardInfo?.firstName)
-        assertEquals(requestEventUserWeb.lastName, responseEventUser?.standardInfo?.lastName)
-        assertEquals(requestEventUserWeb.email, responseEventUser?.socialId?.email)
+        assertEquals(requestEventUserJson.getString("firstName"), responseEventUser?.standardInfo?.firstName)
+        assertEquals(requestEventUserJson.getString("lastName"), responseEventUser?.standardInfo?.lastName)
+        assertEquals(requestEventUserJson.getString("email"), responseEventUser?.socialId?.email)
 
         val requestEventUserJson2 = JSONObject(userProfileUpdatedJson).toString()
         //val requestEventUserMongo2 = objectMapper.readValue(requestEventUserJson2, EventUser::class.java)
@@ -211,8 +210,8 @@ class IntegrationTestCases {
         assertEquals(requestEventUserWeb3.dob, responseEventUser?.standardInfo?.dob)
         assertEquals(requestEventUserWeb3.country, responseEventUser?.standardInfo?.country)
 
-
     }
+
 
     private fun mongoDatabase(): MongoDatabase? {
         val mongoClient = MongoClient("192.168.0.109", 27017)
@@ -269,12 +268,12 @@ class IntegrationTestCases {
         return mapper
     }
 
-    private fun responseBuilder(request: Event): Event? {
+    private fun responseBuilder(name: String?): Event? {
         val db = mongoDatabase()
         val response = db?.let {
             val collection = db.getCollection("13_event")
             val searchQuery = BasicDBObject()
-            searchQuery["name"] = request.name
+            searchQuery["name"] = name
             val cursor = collection.find(searchQuery)
             val iterableCursor = cursor.iterator()
 
@@ -288,12 +287,12 @@ class IntegrationTestCases {
         return response
     }
 
-    private fun responseBuilderUserProfile(request: EventUser): EventUser? {
+    private fun responseBuilderUserProfile(firstName: String?): EventUser? {
         val db = mongoDatabase()
         val response = db?.let {
             val collection = db.getCollection("13_eventUser")
             val searchQuery = BasicDBObject()
-            searchQuery["firstName"] = request.standardInfo.firstName
+            searchQuery["firstName"] = firstName
             val cursor = collection.find(searchQuery)
             val iterableCursor = cursor.iterator()
 
