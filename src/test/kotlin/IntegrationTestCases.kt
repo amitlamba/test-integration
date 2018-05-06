@@ -36,7 +36,7 @@ class IntegrationTestCases {
 
     private val userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
     private lateinit var objectMapper: ObjectMapper
-    private val profile = "dev" //change this to dev to use local urls
+    private val profile = "server" //change this to dev to use local urls
 
     private lateinit var authUrl: String
     private lateinit var eventUrl: String
@@ -185,13 +185,13 @@ class IntegrationTestCases {
         assertEquals(userId, response4?.userId)
 
         val requestEventUserJson = JSONObject(userProfileJson)
-        val requestEventUser = objectMapper.readValue(userProfileJson, EventUser::class.java)
-        val responseEventUser = responseBuilderUserProfile(requestEventUser.standardInfo.firstName)
+        val requestEventUser = objectMapper.readValue(userProfileJson, EventUserWeb::class.java)
+        val responseEventUser = responseBuilderUserProfile(requestEventUser.firstName)
 
 
-        assertEquals(requestEventUserJson.getString("firstName"), responseEventUser?.standardInfo?.firstName)
-        assertEquals(requestEventUserJson.getString("lastName"), responseEventUser?.standardInfo?.lastName)
-        assertEquals(requestEventUserJson.getString("email"), responseEventUser?.socialId?.email)
+        assertEquals(requestEventUserJson.getString("firstName"), responseEventUser?.standardInfo?.firstname)
+        assertEquals(requestEventUserJson.getString("lastName"), responseEventUser?.standardInfo?.lastname)
+        assertEquals(requestEventUserJson.getString("email"), responseEventUser?.identity?.email)
 
         val requestEventUserJson2 = JSONObject(userProfileUpdatedJson).toString()
         //val requestEventUserMongo2 = objectMapper.readValue(requestEventUserJson2, EventUser::class.java)
@@ -292,7 +292,7 @@ class IntegrationTestCases {
         val response = db?.let {
             val collection = db.getCollection("13_eventUser")
             val searchQuery = BasicDBObject()
-            searchQuery["firstName"] = firstName
+            searchQuery["standardInfo.firstname"] = firstName
             val cursor = collection.find(searchQuery)
             val iterableCursor = cursor.iterator()
 
@@ -300,7 +300,7 @@ class IntegrationTestCases {
             while (iterableCursor.hasNext()) {
                 responseJson = iterableCursor.next().toJson(JsonWriterSettings(JsonMode.STRICT))
             }
-            collection.deleteOne(searchQuery)
+            //collection.deleteOne(searchQuery)
             objectMapper.readValue(responseJson, EventUser::class.java)
         }
         return response

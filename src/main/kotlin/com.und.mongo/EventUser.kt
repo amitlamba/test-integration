@@ -3,38 +3,42 @@ package com.und.mongo
 import java.time.LocalDateTime
 import java.util.*
 
+
+
 class EventUser {
     //var id: String? = null
-    var clientId: String? = null //client id , user is associated with, this can come from collection
-    var clientUserId: String? = null//this is id of the user client has provided
-    var socialId: SocialId = SocialId()
+    var clientId: Int = -1
+    var identity: Identity = Identity()
     var standardInfo: StandardInfo = StandardInfo()
-    var additionalInfo: HashMap<String, Any> = hashMapOf()
-    //var creationDate: LocalDateTime = LocalDateTime.now()
-
-
+    val additionalInfo: HashMap<String, Any> = hashMapOf()
+   // var creationTime: LocalDateTime = LocalDateTime.now()
 }
 
-class SocialId {
 
+class Identity {
+    var email: String? = null
+    var clientUserId: String? = null
+    var undId: String? = null
     var fbId: String? = null
     var googleId: String? = null
     var mobile: String? = null
-    var email: String? = null
 
+}
 
+data class CommunicationDetails(val value: String, var dnd: Boolean = false)
+class Communication {
+    var email: CommunicationDetails? = null
+    var mobile: CommunicationDetails? = null
 }
 
 class StandardInfo {
-    var firstName: String? = null
-    var lastName: String? = null
+    var firstname: String? = null
+    var lastname: String? = null
     var gender: String? = null
     var dob: String? = null
+    var languages: MutableList<String> = mutableListOf()
     var country: String? = null
-    var countryCode: String? = null
-
-
+    var City: String? = null
+    var Address: String? = null
 }
-
-
 
