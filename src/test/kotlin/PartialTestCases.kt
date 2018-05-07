@@ -5,7 +5,7 @@ import org.apache.http.protocol.HTTP
 import org.junit.Before
 import org.junit.Test
 import org.apache.commons.lang3.RandomStringUtils
-class AbraKadabra {
+class PartialTestCases {
     //private val baseUrl = "http://192.168.0.109:8080"
     private var status = ""
     private var token = ""
