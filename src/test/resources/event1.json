@@ -1,0 +1,16 @@
+{
+  "name": "Product Viewed",
+  "attributes": {
+    "company": "Samsung",
+    "model": "S9 Plus",
+    "colour": "Midnight Black",
+    "processor":"Snapdragon 865",
+    "ram":"8 GB",
+    "internalStorage":"128 GB"
+  },
+  "city": "New York City",
+  "state": "New York",
+  "country": "United States",
+  "latitude":"-56.36",
+  "longitude":"125.65"
+}

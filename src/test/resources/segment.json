@@ -1,0 +1,71 @@
+{
+  "didEvents": {
+    "events": [
+      {
+        "name": "App Uninstalled",
+        "dateFilter": {
+          "operator": "Before",
+          "values": [
+            "2018-05-22"
+          ]
+        },
+        "propertyFilters": [
+          {
+            "values": [
+              "Monday",
+              "Wednesday",
+              "Thursday"
+            ],
+            "name": "Day of week"
+          }
+        ],
+        "whereFilter": {
+          "operator": "GreaterThan",
+          "values": [
+            5
+          ],
+          "whereFilterName": "Count"
+        }
+      },
+      {
+        "name": "Added to cart",
+        "dateFilter": {
+          "operator": "Before",
+          "values": [
+            "2018-05-21T18:30:00.000Z"
+          ]
+        },
+        "propertyFilters": [
+          {
+            "values": [
+              54
+            ],
+            "name": "Amount",
+            "type": "number",
+            "operator": "Equals"
+          }
+        ],
+        "whereFilter": {
+          "operator": "Equals",
+          "values": [
+            2
+          ],
+          "whereFilterName": "SumOfValuesOf",
+          "propertyName": "Amount"
+        }
+      }
+    ],
+    "joinCondition": {
+      "conditionType": "AllOf"
+    }
+  },
+  "didNotEvents": {
+    "events": [],
+    "joinCondition": {
+      "conditionType": "AnyOf"
+    }
+  },
+  "globalFilters": [],
+  "geographyFilters": [],
+  "type": "Behaviour"
+}

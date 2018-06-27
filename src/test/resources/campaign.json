@@ -1,0 +1,17 @@
+{
+  "segmentationID": "37",
+  "templateID": "21",
+  "name": "Und Campaign",
+  "schedule": {
+    "recurring": {
+      "scheduleStartDate": "2018-05-21",
+      "scheduleEnd": {
+        "endType": "EndsOnDate",
+        "endsOn": "2018-05-26",
+        "occurrences": null
+      },
+      "cronExpression": "4 3 2 23,25 1/1 ? *"
+    }
+  },
+  "campaignType": "EMAIL"
+}

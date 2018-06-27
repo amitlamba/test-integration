@@ -1,0 +1,14 @@
+{
+  "name": "Promotion Applied",
+  "attributes": {
+    "company": "Samsung",
+    "model": "S9 Plus",
+    "colour": "Midnight Black",
+    "processor":"Snapdragon 865",
+    "ram":"8 GB",
+    "internalStorage":"128 GB"
+  },
+  "city": "Gurgaon",
+  "state": "Haryana",
+  "country": "India"
+}

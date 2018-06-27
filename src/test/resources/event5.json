@@ -1,0 +1,12 @@
+{
+  "name": "Products Viewed",
+  "attributes": {
+    "item":"Comics",
+    "genre":"Superhero Comics",
+    "publishingCompany": "Marvel Comics",
+    "series": "Spectacular Spiderman"
+  },
+  "city": "New York City",
+  "state": "New York",
+  "country": "United States"
+}

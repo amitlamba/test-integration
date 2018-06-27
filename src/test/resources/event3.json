@@ -1,23 +1,13 @@
 {
-  "name": "chargedItem2",
+  "name": "Added To WishList",
   "attributes": {
-    "item": "Laptop",
-    "company": "Lenovo",
-    "model": "Legion",
-    "colour": "Black"
+    "company": "Dell",
+    "model": "Alienware",
+    "colour": "Silver",
+    "processor":"i7",
+    "ram":"32 GB",
+    "graphicCard":"Nvidia Geforce GTX 1080"
   },
-  "LineItem": [
-    {
-      "price":"100000",
-      "currency":"INR",
-      "product":"Laptop",
-      "categories":[
-        "Gaming",
-        "VR"
-      ],
-      "quantity":1
-    }
-  ],
   "city": "Gurgaon",
   "state": "Haryana",
   "country": "India"

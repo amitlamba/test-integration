@@ -1,0 +1,12 @@
+{
+  "firstName": "Emilia",
+  "lastName": "Clarke",
+  "mobile":"9456235896",
+  "email":"emiliaclarke@yahoo.com",
+  "dob":"1986-10-23",
+  "gender":"Female",
+  "additionalInfo":{
+    "profession":"Acting",
+    "nationality":"London"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "charged",
+  "attributes": {
+    "company": "Apple",
+    "model": "MacBook Pro",
+    "colour": "Silver",
+    "processor":"Intel Core i7",
+    "ram":"8 GB"
+  },
+  "lineItem": [
+    {
+      "price": 165999,
+      "currency": "INR",
+      "product": "Laptop",
+      "categories": ["Apple","MacBook"],
+      "quantity": 1
+    }
+  ],
+  "city": "Sirsa",
+  "state": "Haryana",
+  "country": "India"
+}

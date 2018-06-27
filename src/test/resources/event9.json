@@ -1,0 +1,13 @@
+{
+  "name": "Products Viewed",
+  "attributes": {
+    "company": "Microsoft",
+    "model": "XBox One",
+    "colour": "White",
+    "ram":"16 GB",
+    "internalStorage":"1 TB"
+  },
+  "city": "Los Angeles",
+  "state": "California",
+  "country": "United States"
+}

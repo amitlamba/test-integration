@@ -1,12 +1,11 @@
 {
-  "name": "Products Viewed",
+  "name": "Added To Cart",
   "attributes": {
     "company": "Apple",
-    "model": "Iphone X",
-    "colour": "Black",
-    "processor":"A11 Bionic",
-    "ram":"8 GB",
-    "internalStorage":"128 GB"
+    "model": "MacBook Pro",
+    "colour": "Silver",
+    "processor":"Intel Core i7",
+    "ram":"16 GB"
   },
   "city": "New York City",
   "state": "New York",

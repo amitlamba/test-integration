@@ -1,12 +1,22 @@
  {
-    "name": "AddedToWishList",
-    "attributes": {
-      "item": "Playstation",
-      "model":"PS4",
-      "company":"Sony",
-      "colour": "Black"
-    },
-    "city": "Gurgaon",
-    "state": "Haryana",
-    "country": "India"
+    "name": "charged",
+   "attributes": {
+     "company": "Sony",
+     "model": "PS4",
+     "colour": "Black",
+     "ram":"16 GB",
+     "internalStorage":"1 TB"
+   },
+   "lineItem": [
+     {
+       "price": 35999,
+       "currency": "INR",
+       "product": "Playstation",
+       "categories": ["Sony","Playstation"],
+       "quantity": 1
+     }
+   ],
+   "city": "New Delhi",
+   "state": "Delhi",
+   "country": "India"
   }

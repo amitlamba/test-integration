@@ -1,0 +1,30 @@
+{
+  "name": "charged",
+  "attributes": {
+    "company": "Samsung",
+    "model": "S9 Plus",
+    "colour": "Midnight Black",
+    "processor":"Snapdragon 865",
+    "ram":"8 GB",
+    "internalStorage":"128 GB"
+  },
+  "lineItem": [
+    {
+      "price": 65999,
+      "currency": "INR",
+      "product": "Mobile Phone",
+      "categories": ["Samsung","Mobile Phone"],
+      "quantity": 1,
+      "properties": {
+        "batteryBackup": "Upto 24 Hours",
+        "pixelDensity": "568 ppi",
+        "screenSIze":"5.8 Inches"
+      }
+    }
+  ],
+  "city": "Gurgaon",
+  "state": "Haryana",
+  "country": "India",
+  "latitude":"-56.36",
+  "longitude":"125.65"
+}

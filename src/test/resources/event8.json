@@ -1,0 +1,13 @@
+{
+  "name": "Products Viewed",
+  "attributes": {
+    "company": "Sony",
+    "model": "PS4",
+    "colour": "Black",
+    "ram":"16 GB",
+    "internalStorage":"1 TB"
+  },
+  "city": "New York City",
+  "state": "New York",
+  "country": "United States"
+}
